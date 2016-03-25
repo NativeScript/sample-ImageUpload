@@ -55,6 +55,8 @@ function sendImages(uri, fileUri) {
             console.log('Total bytes to transfer: ' + e.totalBytes);
         }  
     }
+    
+    return task;
 }
 
 function startSelection(context) {
@@ -66,7 +68,7 @@ function startSelection(context) {
 		})
 		.then(function(selection) {
 			selection.forEach(function(selected) {
-                sendImages(selected.uri, selected.fileUri);             
+                selected.uploadTask = sendImages(selected.uri, selected.fileUri);             
                 selected.imageName = imageName;
                 
                 console.log("----------------");
