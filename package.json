@@ -1,0 +1,13 @@
+{
+  "nativescript": {
+    "id": "org.nativescript.backHttpApp",
+    "tns-android": {
+      "version": "1.7.1"
+    }
+  },
+  "dependencies": {
+    "nativescript-background-http": "0.0.3",
+    "nativescript-imagepicker": "0.0.4",
+    "tns-core-modules": "1.7.1"
+  }
+}
