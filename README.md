@@ -1,7 +1,24 @@
 # sample-ImageUpload
-An integration of nativescript-image-picker and nativescript-background-http
+Sample app showing an integration of nativescript-image-picker and nativescript-background-http plugins.
 
-## iOS 
+## Usage
+
+Connetc your device or start your prefered emulator/simulator.
+Tnen from the root app directory start your cmd/shell
+
+for android
+```
+tns run android
+```
+
+for ios
+```
+tns run ios
+```
+Alternativly you can use the livesync command.
+For better understanding of the tns commands [please follow this link](http://docs.nativescript.org/start/getting-started#development-workflow)
+
+## iOS * 
 Please note the `NSAppTransportSecurity` key in the `app/App_Resources/iOS/Info.plist`:
 ```
 	<key>NSAppTransportSecurity</key>
