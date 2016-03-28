@@ -3,7 +3,7 @@ Sample app showing an integration of nativescript-image-picker and nativescript-
 
 ## Usage
 
-Connetc your device or start your prefered emulator/simulator.
+Connect your device or start your prefered emulator/simulator.
 Tnen from the root app directory start your cmd/shell
 
 for android
