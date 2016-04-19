@@ -1,13 +1,15 @@
 <Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
-    <GridLayout rows="*, auto, auto">
-        <ListView id="urls-list">
+    <GridLayout rows="*, auto, auto" class="pick-page">
+        <ListView items="{{ imageItems }}" itemTap="listViewItemTap" id="urls-list">
             <ListView.itemTemplate>
-                <GridLayout columns="94, auto" rows="*, *, *, *">
+                <GridLayout columns="110, auto" rows="*, *, *, *" class="cell-view">
                     <Image rowSpan="4" width="94" height="94" src="{{ thumb }}" />
                     <Label col="1" row="0" text="{{ uri }}" textWrap="true"/>
                     <Progress col="1" row="1" value="{{ uploadTask.upload }}" maxValue="{{ uploadTask.totalUpload }}" />
-                    <Label col="1" row="2" text="{{ fileUri }}" />
-                    <Label col="1" row="3" text="{{ imageName }}" />
+                    <!--<Label col="1" row="2" text="{{ fileUri }}" />
+                    <Label col="1" row="3" text="{{ imageName }}" />-->
+                    <Label col="1" row="2" text="{{ uploadTask.upload }}" />
+                    <Label col="1" row="3" text="{{ uploadTask.totalUpload }}" />
                 </GridLayout>
             </ListView.itemTemplate>
         </ListView>

@@ -1,22 +1,16 @@
-﻿.title {
-    font-size: 30;
-    horizontal-align: center;
-    margin: 20;
+﻿.pick-page {
+    background-color: darkslategray;
+    color: lightgray;
+    font-size: 14;
 }
 
-button {
-    font-size: 20;
-    horizontal-align: center;
+.details-page {
+    background-color: darkslategray;
+    color: lightgray;
+    font-size: 24;
 }
 
-.message {
-    font-size: 20;
-    color: #284848;
-    horizontal-align: center;
-    margin: 0 20;
-    text-align: center;
-}
-Label {
-    font-size: 12;
-    color: #284848;
+.cell-view {
+    border-width: 1;
+    border-color: lightgray;
 }
