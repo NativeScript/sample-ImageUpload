@@ -1,16 +1,16 @@
 {
-	"nativescript": {
-		"id": "org.nativescript.backHttpApp",
-		"tns-android": {
-			"version": "1.7.1"
-		},
-		"tns-ios": {
-			"version": "1.7.0"
-		}
-	},
-	"dependencies": {
-		"nativescript-background-http": "0.0.3",
-		"nativescript-imagepicker": "0.0.4",
-		"tns-core-modules": "1.7.1"
-	}
+  "nativescript": {
+    "id": "org.nativescript.backHttpApp",
+    "tns-android": {
+      "version": "1.7.1"
+    },
+    "tns-ios": {
+      "version": "1.7.0"
+    }
+  },
+  "dependencies": {
+    "nativescript-background-http": "0.0.3",
+    "nativescript-imagepicker": "0.0.6",
+    "tns-core-modules": "1.7.1"
+  }
 }
