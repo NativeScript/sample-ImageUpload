@@ -4,6 +4,8 @@ var mainViewModel = require("./main-page").mainViewModel;
 var imageSource = require("image-source");
 var fs = require("file-system");
 
+var frameModule = require("ui/frame");
+
 function navigatedTo(args) {
     var page = args.object;
     console.log(args.context);
@@ -21,14 +23,11 @@ function navigatedTo(args) {
         console.log("Error: " + e);
         console.log(e.stack);
     });
-    
-    
-    
-    // var current = mainViewModel.get('selectedItem');
-    
-    // console.log(current.uri);
-    // console.log(current.fileUri);
-    // console.log(current.imageName);
+}
+
+function onGoBack(args) {
+    frameModule.topmost().goBack();
 }
 
 exports.navigatedTo = navigatedTo;
+exports.onGoBack = onGoBack;
