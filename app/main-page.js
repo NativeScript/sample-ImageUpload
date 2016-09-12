@@ -1,11 +1,13 @@
+var platformModule = require("platform");
 var frameModule = require("ui/frame");
-
-var imagepickerModule = require("nativescript-imagepicker");
-var bghttpModule = require("nativescript-background-http");
-var session = bghttpModule.session("image-upload");
-
 var observable = require("data/observable");
 var observableArray = require("data/observable-array");
+
+var permissions = require( "nativescript-permissions");
+var imagepickerModule = require("nativescript-imagepicker");
+
+var bghttpModule = require("nativescript-background-http");
+var session = bghttpModule.session("image-upload");
 
 var imageItems = new observableArray.ObservableArray();
 var mainViewModel = new observable.Observable();
@@ -23,14 +25,38 @@ function onSelectMultipleTap(args) {
 	var context = imagepickerModule.create({
 		mode: "multiple"
 	});
-	startSelection(context);
+
+    if (platformModule.device.os === "Android" && platformModule.device.sdkVersion >= 23)  {   
+        permissions.requestPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE, "I need these permissions to read from storage")
+        .then(function() {
+            console.log("Permissions granted!");
+            startSelection(context);
+        })
+        .catch(function() {
+            console.log("Uh oh, no permissions - plan B time!");
+        });
+    } else {
+        startSelection(context);
+    }	
 }
 
 function onSelectSingleTap(args) {	
 	var context = imagepickerModule.create({
 		mode: "single"
 	});
-	startSelection(context);
+
+	if (platformModule.device.os === "Android" && platformModule.device.sdkVersion >= 23) {   
+        permissions.requestPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE, "I need these permissions to read from storage")
+        .then(function() {
+            console.log("Permissions granted!");
+            startSelection(context);
+        })
+        .catch(function() {
+            console.log("Uh oh, no permissions - plan B time!");
+        });
+    } else {
+        startSelection(context);
+    }
 }
 
 function sendImages(uri, fileUri) {
@@ -56,6 +82,8 @@ function sendImages(uri, fileUri) {
     function logEvent(e) {      
         console.log("----------------");
         console.log('Status: ' + e.eventName);
+        console.log('Error: ' + e.error);
+
         // console.log(e.object);
         if (e.totalBytes !== undefined) {
             console.log('current bytes transfered: ' + e.currentBytes);
