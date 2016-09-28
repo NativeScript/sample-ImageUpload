@@ -2,17 +2,17 @@
   "nativescript": {
     "id": "org.nativescript.backHttpApp",
     "tns-ios": {
-      "version": "2.2.1"
+      "version": "2.3.0"
     },
     "tns-android": {
-      "version": "2.2.0"
+      "version": "2.3.0"
     }
   },
   "dependencies": {
-    "nativescript-background-http": "0.0.3",
-    "nativescript-imagepicker": "0.0.6",
+    "nativescript-background-http": "*",
+    "nativescript-imagepicker": "*",
     "nativescript-permissions": "^1.2.0",
-    "tns-core-modules": "2.2.0"
+    "tns-core-modules": "*"
   },
   "devDependencies": {
     "babel-traverse": "6.7.6",
