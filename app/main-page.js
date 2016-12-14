@@ -2,19 +2,21 @@ var platformModule = require("platform");
 var frameModule = require("ui/frame");
 var observable = require("data/observable");
 var observableArray = require("data/observable-array");
-
+var ImageModule = require("ui/image");
 var permissions = require( "nativescript-permissions");
 var imagepickerModule = require("nativescript-imagepicker");
-
+var fs = require('file-system');
 var bghttpModule = require("nativescript-background-http");
 var session = bghttpModule.session("image-upload");
 
 var imageItems = new observableArray.ObservableArray();
 var mainViewModel = new observable.Observable();
+var imageSource = require("image-source");
 mainViewModel.set("imageItems", imageItems);
 
 var page;
 var imageName;
+var counter=0;
 
 function pageLoaded(args) {
 	page = args.object;
@@ -75,22 +77,6 @@ function sendImages(uri, fileUri) {
     
     var task = session.uploadFile(fileUri, request);
     
-    task.on("progress", logEvent);
-    task.on("error", logEvent);
-    task.on("complete", logEvent);
-    
-    function logEvent(e) {      
-        console.log("----------------");
-        console.log('Status: ' + e.eventName);
-        console.log('Error: ' + e.error);
-
-        // console.log(e.object);
-        if (e.totalBytes !== undefined) {
-            console.log('current bytes transfered: ' + e.currentBytes);
-            console.log('Total bytes to transfer: ' + e.totalBytes);
-        }  
-    }
-    
     return task;
 }
 
@@ -102,18 +88,25 @@ function startSelection(context) {
 			return context.present();
 		})
 		.then(function(selection) {
-			selection.forEach(function(selected) {
-                selected.uploadTask = sendImages(selected.uri, selected.fileUri);             
-                selected.imageName = imageName;
+			selection.forEach(function(selected_item) {
+                selected_item.getImage().then(function(imagesource){
+                    let folder = fs.knownFolders.documents();
+                    let path = fs.path.join(folder.path, "Test"+counter+".png");
+                    let saved = imagesource.saveToFile(path, "png");
+                    
+                    if(saved){
+                        var task = sendImages("Image"+counter+".png", path);
+                        var item = new observable.Observable();
+                        item.set("thumb", imagesource);
+                        item.set("uri", "Test"+counter+".png");
+                        item.set("uploadTask", task);
+
+                        imageItems.push(item);
+                    }
+                    counter++;
+                })
                 
-                console.log("----------------");
-                console.log("uri: " + selected.uri);           
-                console.log("fileUri: " + selected.fileUri);
-                console.log('Image name:' + imageName);
-                
-                imageItems.push(selected);
 			});
-			//list.items = selection;
 		}).catch(function (e) {
 			console.log(e);
 		});
