@@ -77,22 +77,6 @@ function sendImages(uri, fileUri) {
     
     var task = session.uploadFile(fileUri, request);
     
-    // task.on("progress", logEvent);
-    // task.on("error", logEvent);
-    // task.on("complete", logEvent);
-    
-    // function logEvent(e) {      
-    //     console.log("----------------");
-    //     console.log('Status: ' + e.eventName);
-    //     console.log('Error: ' + e.error);
-
-    //     // console.log(e.object);
-    //     if (e.totalBytes !== undefined) {
-    //         console.log('current bytes transfered: ' + e.currentBytes);
-    //         console.log('Total bytes to transfer: ' + e.totalBytes);
-    //     }  
-    // }
-    
     return task;
 }
 
