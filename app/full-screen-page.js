@@ -8,7 +8,6 @@ var frameModule = require("ui/frame");
 
 function navigatedTo(args) {
     var page = args.object;
-    console.log(args.context);
     var selectedImage = args.context;
     
     page.bindingContext = new Observable({
@@ -21,7 +20,6 @@ function navigatedTo(args) {
         page.bindingContext.image = imageSource;
     }).catch(function(e) {
         console.log("Error: " + e);
-        console.log(e.stack);
     });
 }
 
