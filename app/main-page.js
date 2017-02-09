@@ -82,7 +82,9 @@ function sendImages(uri, fileUri) {
     task.on("complete", logEvent);
     
     function logEvent(e) {
-        console.log(e.eventName);
+        console.log("currentBytes: " + e.currentBytes);
+        console.log("totalBytes: " + e.totalBytes);
+        console.log("eventName: " + e.eventName);
     }
     
     return task;
@@ -116,7 +118,7 @@ function startSelection(context) {
                 
 			});
 		}).catch(function (e) {
-			console.log(e);
+			console.log(e.eventName);
 		});
 }
 
