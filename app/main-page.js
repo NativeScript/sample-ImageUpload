@@ -16,7 +16,7 @@ mainViewModel.set("imageItems", imageItems);
 
 var page;
 var imageName;
-var counter=0;
+var counter = 0;
 
 function pageLoaded(args) {
 	page = args.object;
@@ -76,6 +76,14 @@ function sendImages(uri, fileUri) {
     };
     
     var task = session.uploadFile(fileUri, request);
+
+    task.on("progress", logEvent);
+    task.on("error", logEvent);
+    task.on("complete", logEvent);
+    
+    function logEvent(e) {
+        console.log(e.eventName);
+    }
     
     return task;
 }
