@@ -9,10 +9,11 @@
     }
   },
   "dependencies": {
-    "nativescript-background-http": "2.5.1",
-    "nativescript-imagepicker": "^2.4.1",
+    "nativescript-background-http": "^3.0.0",
+    "nativescript-imagepicker": "^3.0.0",
     "nativescript-permissions": "^1.2.3",
-    "tns-core-modules": "^2.5.0"
+    "tns-core-modules": "^3.0.0",
+    "nativescript-telerik-ui": "^2.0.0"
   },
   "devDependencies": {
     "babel-traverse": "6.7.6",
