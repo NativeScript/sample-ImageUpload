@@ -100,12 +100,20 @@ function startSelection(context) {
 		.then(function(selection) {
 			selection.forEach(function(selected_item) {
                 selected_item.getImage().then(function(imagesource){
-                    let folder = fs.knownFolders.documents();
-                    let path = fs.path.join(folder.path, "Test"+counter+".png");
-                    let saved = imagesource.saveToFile(path, "png");
+                  //                     let folder = fs.knownFolders.documents();
+//                     let path = fs.path.join(folder.path, "Test"+counter+".png");
+//                     let saved = imagesource.saveToFile(path, "png");
                     
-                    if(saved){
-                        var task = sendImages("Image"+counter+".png", path);
+                   	var localPath=null;
+
+                        if (platformModule.device.os === "Android") {
+                            localPath = selected_item.android;
+                        } else {
+                            localPath = selected_item.ios;
+                        }
+
+                   if (localPath) {
+                        var task = sendImages("Image"+counter+".png", localPath);
                         var item = new observable.Observable();
                         item.set("thumb", imagesource);
                         item.set("uri", "Test"+counter+".png");
