@@ -1,17 +1,19 @@
 <Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
-    <GridLayout rows="*, auto, auto" class="pick-page">       
-        <ListView items="{{ imageItems }}" itemTap="listViewItemTap" id="urls-list">
-            <ListView.itemTemplate>
-                <GridLayout columns="110, auto" rows="*, *, *, *" class="cell-view">
-                    <Image rowSpan="4" width="94" height="94" src="{{ thumb }}" />
-                    <Label col="1" row="0" text="{{ uri }}" textWrap="true"/>
-                    <Progress col="1" row="1" value="{{ uploadTask.upload }}" maxValue="{{ uploadTask.totalUpload }}" />
-                    <Label col="1" row="2" text="{{ uploadTask.upload }}" />
-                    <Label col="1" row="3" text="{{ uploadTask.totalUpload }}" />
-                </GridLayout>
-            </ListView.itemTemplate>
-        </ListView>
-        <Button text="Pick & Upload Multiple Images"  row="1" tap="onSelectMultipleTap" horizontalAlignment="center" />
-        <Button text="Pick & Upload Single Image" row="2" tap="onSelectSingleTap" horizontalAlignment="center" />
-    </GridLayout>
+	<GridLayout rows="*, auto, auto, 40">
+		<GridLayout row="0" rows="*" columns="*" margin="10" >
+			<ListView row="0" items="{{ items }}" id="list" itemTap="listViewItemTap">
+				<ListView.itemTemplate>
+					<GridLayout height="160" rows="*, *, *, *" columns="200, auto" class="cell-view">
+						<Image src="{{ thumb }}" row="0" col="0" rowSpan="4" stretch="aspectFill"/>
+						<Label col="1" row="0" text="{{ uri }}" textWrap="true" />
+						<Progress col="1" row="1" value="{{ uploadTask.upload }}" maxValue="{{ uploadTask.totalUpload }}" />
+						<Label col="1" row="2" text="{{ uploadTask.upload }}" />
+						<Label col="1" row="3" text="{{ uploadTask.totalUpload }}" />
+					</GridLayout>
+				</ListView.itemTemplate>
+			</ListView>
+		</GridLayout>
+        <Button row="1" text="Pick & Upload Multiple Images" tap="onSelectMultipleTap" />
+		<Button row="2" text="Pick & Upload Single Image" tap="onSelectSingleTap" />
+	</GridLayout>
 </Page>

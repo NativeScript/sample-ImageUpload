@@ -11,4 +11,23 @@
 .cell-view {
     border-width: 1;
     border-color: lightgray;
+    padding: 10;
+    background-color: gray;
+}
+
+GridLayout {
+    background-color: gray;
+    color: white;
+}
+
+ListView {
+    background-color: gray;
+}
+
+Image {
+    margin: 0 8 0 0;
+}
+
+Button {
+    background-color: orange;
 }
